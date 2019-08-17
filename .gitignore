@@ -1,0 +1,9 @@
+images
+__pycache__
+.vscode
+.env
+tmp
+Data.rar
+*.log
+model
+Data

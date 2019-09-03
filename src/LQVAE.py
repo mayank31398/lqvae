@@ -44,8 +44,8 @@ class LQVAE:
         self.x1 = self.GeneratorContinuous(self.z_softsign_x, reuse=False)
         self.x2 = self.GeneratorDiscrete(self.z_hardsign_x, reuse=False)
 
-        self.z_filt_x = tf.sign(self.quant_thresh ** 2 - self.z_mean ** 2)
-        self.x_filt = self.GeneratorDiscrete(self.z_filt_x, reuse=True)
+        # self.z_filt_x = tf.sign(self.quant_thresh ** 2 - self.z_mean ** 2)
+        # self.x_filt = self.GeneratorDiscrete(self.z_filt_x, reuse=True)
 
         # Calculate losses
         self.kl_loss = self.KL_loss(

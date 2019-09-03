@@ -52,11 +52,12 @@ class Classifier:
                                  strides=1, padding="same", activation=tf.nn.leaky_relu)
             x = tf.layers.conv2d(x, kernel_size=3, filters=64,
                                  strides=2, padding="same", activation=tf.nn.leaky_relu)
+            x = tf.layers.conv2d(x, kernel_size=3, filters=64,
+                                 strides=2, padding="same", activation=tf.nn.leaky_relu)
             x = tf.layers.flatten(x)
             x = tf.layers.dense(x, 128 * 7 * 7, activation=tf.nn.leaky_relu)
             x = tf.layers.dense(x, 1024, activation=tf.nn.leaky_relu)
-            x = tf.layers.dense(x, self.num_classes,
-                                activation=tf.nn.leaky_relu)
+            x = tf.layers.dense(x, self.num_classes)
 
         return x
 

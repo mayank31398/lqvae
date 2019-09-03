@@ -28,12 +28,20 @@ def LoadData(data_path, normalize=True, make_onehot=True, file="csv"):
             one_hot = OneHotEncoder()
             y_train = one_hot.fit_transform(
                 np.expand_dims(y_train, axis=1)).toarray()
-            y_test = one_hot.transform(np.expand_dims(y_test, axis=1)).toarray()
-        
+            y_test = one_hot.transform(
+                np.expand_dims(y_test, axis=1)).toarray()
+
         return (X_train, y_train), (X_test, y_test)
     elif file == "npy":
         X = np.load(os.path.join(data_path, "X_test_FGSM.npy"))
         y = np.load(os.path.join(data_path, "y_test_FGSM.npy"))
+
+        for i in range(X.shape[0]):
+            m = np.min(X[i])
+            X[i] = X[i] - m
+            M = np.max(X[i])
+            X[i] = X[i] / M
+            X[i] = 2 * X[i] - 1
 
         return X, y
 
